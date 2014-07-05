@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>google image search test</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $('#search-btn').click(function(){
+          alert($('#keyword').val());
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>google image search test</h1>
+    <div id="search-form">
+      <input id="keyword">
+      <input id="search-btn" type="button" value="search">
+    </div>
+    <div id="result"></div>
+  </body>
+</html>
