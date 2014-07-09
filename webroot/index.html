@@ -2,20 +2,38 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>google image search test</title>
+    <title>image search API test</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
+      function loadImageGoogleAPI(keyword) {
+        $.ajax(
+          'https://ajax.googleapis.com/ajax/services/search/images?q='+keyword+'&v=1.0&callback=?', 
+          {
+            dataType:'jsonp'
+          }
+        )
+        .done(function(data){
+          console.log(data);
+          var results = data.responseData.results;
+          for (var i = 0; i <results.length; i++) {
+            console.log(results[i].unescapedUrl);
+            $('#result').append('<img src="'+results[i].unescapedUrl+'">');
+          }
+        });
+      }
+
       $(function(){
         $('#search-btn').click(function(){
-          alert($('#keyword').val());
+          var keyword = $('#keyword').val();
+          loadImageGoogleAPI(keyword);
         });
       });
     </script>
   </head>
   <body>
-    <h1>google image search test</h1>
+    <h1>image search API test</h1>
     <div id="search-form">
       <input id="keyword">
       <input id="search-btn" type="button" value="search">
